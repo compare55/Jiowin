@@ -14,7 +14,8 @@ const dtGame = {
 
 const CARD_VALUES = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
 const CARD_SUITS = ['♠','♥','♦','♣'];
-const SUIT_COLORS = { '♠': '#fff', '♥': '#e94560', '♦': '#e94560', '♣': '#fff' };
+// FIX: Black suits ko black color diya (pehle white tha — card bg white hai isliye invisible ho rahe the)
+const SUIT_COLORS = { '♠': '#000', '♥': '#e94560', '♦': '#e94560', '♣': '#000' };
 
 // ========================
 // INIT
@@ -144,6 +145,7 @@ function animateCard(id, val, suit) {
   setTimeout(() => {
     el.querySelector('.card-value').textContent = val;
     el.querySelector('.card-suit').textContent = suit;
+    // FIX: Suit ke hisaab se color set
     el.querySelector('.card-value').style.color = SUIT_COLORS[suit];
     el.querySelector('.card-suit').style.color = SUIT_COLORS[suit];
     el.classList.remove('flipping');
@@ -245,8 +247,9 @@ function resetCards() {
     el.classList.remove('winner', 'flipping');
     el.querySelector('.card-value').textContent = '?';
     el.querySelector('.card-suit').textContent = '?';
-    el.querySelector('.card-value').style.color = '#fff';
-    el.querySelector('.card-suit').style.color = '#fff';
+    // FIX: '?' ko black color diya (pehle white tha — card bg white hai isliye invisible tha)
+    el.querySelector('.card-value').style.color = '#000';
+    el.querySelector('.card-suit').style.color = '#000';
   });
   document.getElementById('dragonWinTag').classList.add('hidden');
   document.getElementById('tigerWinTag').classList.add('hidden');
